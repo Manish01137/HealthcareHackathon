@@ -57,7 +57,7 @@ function LiveMap() {
 
     // WebSocket real-time updates & mock polling fallback
     useEffect(() => {
-        const socketURL = (import.meta.env.VITE_API_URL || "http://localhost:5000/api").replace("/api", "");
+        const socketURL = (import.meta.env.VITE_API_URL || "https://healthcarehackathon.onrender.com").replace("/api", "");
         const socket = io(socketURL);
 
         socket.on("connect", () => console.log("Connected to ambulance tracking socket"));
