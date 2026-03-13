@@ -1,29 +1,42 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
+
+const links = [
+    { to: "/", label: "🏠 Home" },
+    { to: "/ambulance", label: "🩺 Triage" },
+    { to: "/hospitals", label: "🏥 Hospitals" },
+    { to: "/dashboard", label: "🚑 Dashboard" },
+    { to: "/disaster", label: "⚠️ Disaster" },
+    { to: "/map", label: "🗺️ Map" },
+    { to: "/hospital-panel", label: "📋 Panel" },
+    { to: "/alerts", label: "🚨 Alerts" },
+]
 
 function Navbar() {
+    const location = useLocation()
 
- return (
+    return (
+        <div className="bg-white shadow-md px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+            <Link to="/" className="flex items-center gap-2">
+                <span className="text-2xl">🚑</span>
+                <h1 className="text-xl font-extrabold text-red-600 tracking-tight">LifeLineAI</h1>
+            </Link>
 
-  <div className="bg-white shadow-md p-4 flex justify-between items-center">
-
-   <h1 className="text-xl font-bold text-red-500">
-    LifeLineAI 🚑
-   </h1>
-
-   <div className="flex gap-6">
-
-    <Link to="/">Home</Link>
-    <Link to="/ambulance">Ambulance</Link>
-    <Link to="/hospitals">Hospitals</Link>
-    <Link to="/map">Live Map</Link>
-    <Link to="/hospital-panel">Hospital Panel</Link>
-    <Link to="/alerts">Alerts</Link>
-
-   </div>
-
-  </div>
-
- )
+            <nav className="flex gap-1">
+                {links.map(link => (
+                    <Link
+                        key={link.to}
+                        to={link.to}
+                        className={`px-3 py-2 rounded-lg text-sm font-semibold transition ${location.pathname === link.to
+                            ? "bg-red-50 text-red-600"
+                            : "text-gray-600 hover:text-red-600 hover:bg-gray-50"
+                            }`}
+                    >
+                        {link.label}
+                    </Link>
+                ))}
+            </nav>
+        </div>
+    )
 }
 
 export default Navbar

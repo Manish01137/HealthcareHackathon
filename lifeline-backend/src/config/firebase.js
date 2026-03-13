@@ -1,9 +1,29 @@
-// import admin from "firebase-admin"
+// Firebase Admin SDK — only initializes if serviceAccount.json exists
+import { createRequire } from "module"
+import { existsSync } from "fs"
+import { fileURLToPath } from "url"
+import { dirname, join } from "path"
 
-// import serviceAccount from "./serviceAccount.json"
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const serviceAccountPath = join(__dirname, "serviceAccount.json")
 
-// admin.initializeApp({
-//  credential: admin.credential.cert(serviceAccount)
-// })
+let admin = null
 
-// export default admin
+if (existsSync(serviceAccountPath)) {
+    try {
+        const require = createRequire(import.meta.url)
+        const adminModule = require("firebase-admin")
+        const serviceAccount = require("./serviceAccount.json")
+        adminModule.initializeApp({
+            credential: adminModule.credential.cert(serviceAccount)
+        })
+        admin = adminModule
+        console.log("[Firebase] ✅ Admin SDK initialized")
+    } catch (e) {
+        console.warn("[Firebase] ⚠️ Failed to initialize:", e.message)
+    }
+} else {
+    console.warn("[Firebase] ⚠️ serviceAccount.json not found — running without push notifications")
+}
+
+export default admin

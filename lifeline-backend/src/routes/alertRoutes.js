@@ -1,8 +1,8 @@
 import express from "express"
-import { sendCrowdAlert } from "../controllers/alertController.js"
+import { triggerCrowdAlert } from "../controllers/alertController.js"
 
 const router = express.Router()
 
-router.post("/crowd", sendCrowdAlert)
+router.post("/crowd", triggerCrowdAlert)
 
 export default router
