@@ -1,0 +1,29 @@
+{
+  "name": "lifeline-backend",
+  "version": "1.0.0",
+  "description": "LifeLineAI Emergency Response Backend",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "lifeline",
+    "ai",
+    "ambulance",
+    "emergency"
+  ],
+  "author": "Manish Beniwal",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "firebase-admin": "^13.7.0",
+    "geolib": "^3.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
