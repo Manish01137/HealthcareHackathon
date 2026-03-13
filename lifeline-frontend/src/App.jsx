@@ -17,7 +17,8 @@ function App() {
     useEffect(() => {
         // Listen to global socket for geofence alert (mocking user location as NYC Center for this project)
         const userLocation = { lat: 40.7128, lng: -74.0060 }; // Mock user in Manhattan
-        const socket = io("http://localhost:5000"); // Match backend Port
+        const socketURL = (import.meta.env.VITE_API_URL || "http://localhost:5000/api").replace("/api", "");
+        const socket = io(socketURL); // Match dynamic backend Port
 
         socket.on("ambulanceLocationUpdate", (amb) => {
             if (amb.status === "en-route") {
