@@ -3,7 +3,10 @@ import { evaluatePatient, allocateDisasterPatients } from "../controllers/patien
 
 const router = express.Router()
 
-router.post("/severity", evaluatePatient)
+// Assess patient severity
+router.post("/evaluate", evaluatePatient)
+
+// Disaster allocation
 router.post("/disaster", allocateDisasterPatients)
 
 export default router

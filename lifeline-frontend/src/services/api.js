@@ -1,7 +1,11 @@
-import axios from "axios";
+import axios from "axios"
 
-const API = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || "https://healthcarehackathon.onrender.com"
-});
+const api = axios.create({
+  baseURL: "http://localhost:5000/api"
+})
 
-export default API;
+export const assessSeverity = (data) => {
+  return api.post("/patients/assess", data)
+}
+
+export default api
