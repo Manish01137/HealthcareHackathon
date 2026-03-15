@@ -6,7 +6,7 @@ const SEVERITY_STYLES = {
 }
 
 const SEVERITY_DESC = {
-    Critical: "Immediate life-threatening — dispatch now",
+    Critical: "Immediate life-threatening — dispatch noww",
     High: "Urgent care required within minutes",
     Moderate: "Needs attention — monitor constantly",
     Low: "Stable — non-emergency transport",
